@@ -1,0 +1,65 @@
+{
+    "title": "Stackless: Native web development with web components",
+    "slides": [
+        {
+            "header": "Stackless",
+            "content": ["<p>Native web development with web components</p>"]
+        },
+        {
+            "header": "JS: The beginning",
+            "content": ["<p>Producing testable, well factored front end code was hard</p>",
+                        "<p>DOM, JS, and CSS all global and brittle</p>",
+                        "<p>Inconsistent browser behavior</p>"]
+        },
+        {
+            "header": "Build tools to the rescue",
+            "content": ["<p>Reusable modules with NPM</p>", 
+                        "<p>Transpiling, bundling</p>",
+                        "<p>Mature Frameworks: React, Angular, Vue</p>"]
+        },
+        {
+            "header": "However...",
+            "content": ["<p>Tools and dependencies need maintenance</p>", 
+                        "<p>⇒ More complexity</p>"]
+        },
+        {
+            "header": "Things change",
+            "content": ["<p>Example: AngularJS vs Angular</p>", 
+                        "<p>Framework fatigue</p><p>No evergreen knowledge?</p>"]
+        },
+        {
+            "header": "The stackless way",
+            "content": ["<p>No build tools</p>",
+                        "<p>Well-factored code</p>", 
+                        "<p>100% web standards</p>"]
+        },
+        {
+            "header": "ES Modules",
+            "content": ["<p>Well-factored code without build tools</p>",
+                        "<p>With modules, we can factor code as we see fit</p>", 
+                        "<p>The browser is our build tool</p>"]
+        },
+        {
+            "header": "ES Modules: import",
+            "content": ["<code>import { SampleService } from 'sample-service.js';</code>"]
+        },
+        {
+            "header": "Web components: The non-framework",
+            "content": ["<p>Custom elements</p>", 
+                        "<p>Shadow DOM</p><p>HTML templates</p>"]
+        },
+        {
+            "header": "You may not need NPM",
+            "content": ["<p>And other lies I keep telling myself</p>"]
+        },
+        {
+            "header": "My image",
+            "content": ["<img src=\"web/images/image.png\" />"],
+            "hideHeader": true
+        },
+        {
+            "header": "The end",
+            "content": ["<p>End</p>"]
+        }
+    ]
+}
