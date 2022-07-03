@@ -10,6 +10,7 @@
     <style>
         :root {
             --accent: #da4526;
+            --accent-alt: #7200c7;
             --light: rgba(235, 235, 235, .6);
             --dark: #16181d;
             --dark-lighter: #282c34;
@@ -32,7 +33,7 @@
 
         main {
             width: var(--content-width);
-            max-width: 100%;
+            max-width: calc(100% - 1rem);
             padding: 1rem 0;
             min-height: calc(100vh - 12rem);
         }
@@ -42,6 +43,7 @@
             text-align: center;
             padding: 2rem;
             background-color: var(--dark);
+            overflow: hidden;
         }
 
         header h1 a {
@@ -51,6 +53,13 @@
             text-decoration: none;
             max-width: var(--content-width);
             display: inline-block;
+
+            background: -webkit-linear-gradient(-70deg, var(--accent-alt) 0%, var(--accent) 100%);
+            background-clip: border-box;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: rgba(0,0,0,0);
+            -webkit-box-decoration-break: clone;
         }
 
         header h2 {
@@ -64,24 +73,29 @@
 
         nav {
             width: 100%;
-            text-align: center;
             background-color: var(--dark-lighter);
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+            text-align: center;
         }
 
-        nav a {
+        nav a, nav a:visited {
             display: inline-block;
             padding: 1rem 2rem;
-            background-color: var(--accent);
             border-radius: 0.5rem;
-            margin: 2rem 1rem;
             text-decoration: none;
-            color: var(--dark);
+            color: #fff;
             font-weight: bold;
             border-radius: 100rem;
+            outline: 3px solid var(--accent);
+            margin: 0 1rem;
         }
 
         nav a:hover {
-            background-color: #9e321c;
+            background: -webkit-linear-gradient(-70deg, var(--accent-alt) 0%, var(--accent) 100%);
+            outline: none;
+            text-decoration: none;
         }
 
         ul {
@@ -107,6 +121,21 @@
             margin: 2rem 0;
             color: var(--light);
         }
+
+        @media (max-width: 600px) {
+          header h1 a {
+            font-size: 3rem;
+          }
+          header h2 {
+            font-size: 1.5rem;
+          }
+          nav {
+            display: block;
+          }
+          nav a {
+            margin-top: 0.5rem;
+          }
+        }
     </style>
 </head>
 
@@ -118,8 +147,9 @@
 
     <nav>
         <a href="/home">Why KnockoffJS?</a>
+        <a href="/demos">Demos</a>
         <a href="/gettingstarted">Getting started</a>
-        <a href="/example">Examples</a>
+        <a href="/documentation">Documentation</a>
     </nav>
 
     <main>

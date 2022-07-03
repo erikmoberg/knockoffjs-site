@@ -1,9 +1,10 @@
-import { SlideModel } from "../../core/models/slide-model";
+import { MovieModel } from "../../core/models/movie-model";
 
 export class MyModel {
     name: string;
-    slides: SlideModel[];
-    selectedSlideText: string;
+    movies: MovieModel[];
+    selectedMovie: MovieModel;
     todoText: string;
     todos: string[];
+    isLoadingMovies: boolean;
 }

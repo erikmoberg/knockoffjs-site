@@ -1,3 +1,5 @@
+import { Router } from "./router.js";
+
 export abstract class FrameworkBase<T extends object> extends HTMLElement {
     
     constructor() {
@@ -32,7 +34,6 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
     templateCache = new Map<Node, string>();
 
     updateBindings(propName: string = null, node: ParentNode = null, context: any = null, alias: string = null) {
-        //const nodes = (node ?? this.shadowRoot).querySelectorAll(propName === null || propName === undefined ? "[data-bind]" : `[data-bind$="${propName}"]`);
         const nodes = (node ?? this.shadowRoot).querySelectorAll("[data-bind]");
         for (const n of nodes) {
             const nodeValue = n.attributes["data-bind"].nodeValue as string;
@@ -89,6 +90,15 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
                 }
             }
         }
+
+        if(!node) {
+            this.shadowRoot.querySelectorAll("a").forEach(a => {
+                const link = a as HTMLAnchorElement;
+                if (a.href.startsWith("/")) {
+                    link.addEventListener("click", Router.handleLinkClick);
+                }
+            });
+        }
     }
     getBindingsFromValue(nodeValue: string) {
         let nodeValueWithObjectsSeparatedBySemicolon = "";
@@ -130,8 +140,31 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
             return context;
         }
 
+        var traverse = function (obj, propertyString) {
+            let cur = obj;
+            const keys = propertyString.split('.');
+            for (const key of keys) {
+                if (key.indexOf("?") === key.length - 1) {
+                    cur = cur[key.substring(0, key.length - 1)];
+                    if (cur === null || cur === undefined) {
+                        return null;
+                    }
+                } else {
+                    cur = cur[key];
+                    if (cur === undefined) {
+                        return undefined;
+                    }
+                }
+            }
+
+            return cur;
+        };
+
         const cleanPropertyName = alias ? propertyName.replace(`${alias}.`, "") : propertyName;
-        let bindingTarget = context ? context[cleanPropertyName] : this.state[cleanPropertyName];
+
+        // todo: remove eval
+        let bindingTarget = context ? traverse(context, cleanPropertyName) : traverse(this.state, cleanPropertyName);
+
         if (bindingTarget === undefined) {
             bindingTarget = this[cleanPropertyName];
         }

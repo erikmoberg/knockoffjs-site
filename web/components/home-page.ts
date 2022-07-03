@@ -1,8 +1,4 @@
-import { SlideModel } from '../../core/models/slide-model.js';
-import { SlideService } from '../../core/services/slide-service.js';
 import { FrameworkBase } from '../../framework/framework-base.js';
-import { ServiceLocator } from '../../framework/service-locator.js';
-import { MyModel } from './my-model.js';
 
 export class HomePage extends FrameworkBase<any> {
   constructor() {
@@ -19,24 +15,71 @@ export class HomePage extends FrameworkBase<any> {
         <section>
           <div>
             <h2>Embrace</h2>
-            <p>Built completely on web standards, such as web components, to ensure future compatibility.</p>
+            <p>Built completely on web standards, such as web components, to ensure future compatibility. Mostly.</p>
           </div>
           <div>
             <h2>Extend</h2>
-            <p>Adds features such reactivity and client-side routing and lets you focus on what matters: Great code.</p>
+            <p>Adds features such reactivity and client-side routing and lets you focus on what matters: Messy business code.</p>
           </div>
           <div>
             <h2>Extinguish</h2>
             <p>Superior to other popular frameworks in any conceivable way; start using it now or be left in the dust.</p>
           </div>
         </section>
+        <h3>Clients</h3>
+        <p>Our (not fake) clients have happily been using KnockoffJS in production for several years with 100% satisfaction.</p>
+        <div class="client-grid">
+          <div><span>☣ biowastR</span></div>
+          <div><span>☠ WebLurker</span></div>
+          <div><span>♙ Chessify</span></div>
+          <div><span>❽ 8Ball</span></div>
+          <div><span>⚔ FancyFencing</span></div>
+          <div><span>☢ Nukely</span></div>
+        </div>
         `;
   }
 
   styles() {
-    return `
+    return /* CSS */`
     section {
       display: flex;
+      justify-content: space-between;
+    }
+    section div {
+      background-color: var(--dark-lighter);
+      color: var(--light);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      flex: 0 27%;
+      margin: 5px 0;
+    }
+    @media (max-width: 600px) {
+      section {
+        display: block;
+      }
+    }
+    section div h2 {
+      color: #fff;
+      margin-top: 0;
+    }
+    .client-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+      column-gap: 2px;
+      row-gap: 2px;
+    }
+    .client-grid div {
+      height: 5rem;
+      background-color: var(--dark);
+      border-radius: 0.5rem;
+      color: #fff;
+      display: flex;
+      justify-content: space-around;
+      font-size: 2rem;
+    }
+    .client-grid div span {
+      display: flex;
+      align-items: center;
     }`;
   }
 
