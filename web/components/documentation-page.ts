@@ -30,6 +30,15 @@ export class DocumentationPage extends FrameworkBase<any> {
         <p><code>this.state.myProperty = "new value";</code></p>
         <p>This updates all bindings. Note that arrays need to be replaced instead of mutated for the change to be detected. This will add a new element:</p>
         <p><code>this.state.myArray = [...this.state.myArray, newElement];</code></p>
+
+        <h3>Routing</h3>
+        <p>TBD</p>
+        <h3>CSS registry</h3>
+        <p>TBD</p>
+        <h3>Service locator</h3>
+        <p>TBD</p>
+        <h3>Unit tests</h3>
+        <p>TBD</p>
         `;
   }
 

@@ -13,6 +13,7 @@ export class BasicPage extends FrameworkBase<MyModel> {
     return `
         <h2>Hello</h2>
         <p data-bind="innerText: name"></p>
+        <button data-bind="event: { click: addExclamation }">Click me!</button>
         `;
   }
 
@@ -28,5 +29,9 @@ export class BasicPage extends FrameworkBase<MyModel> {
     let model = new MyModel();
     model.name = "Mr Worldwide";
     return model;
+  }
+
+  addExclamation = () => {
+    this.state.name += "!";
   }
 }

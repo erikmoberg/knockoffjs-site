@@ -22,6 +22,7 @@ export class BasicPage extends FrameworkBase<MyModel> {
     return \`
         <h2>Hello</h2>
         <p data-bind="innerText: name"></p>
+        <button data-bind="event: { click: addExclamation }">Click me!</button>
         \`;
   }
 
@@ -38,20 +39,26 @@ export class BasicPage extends FrameworkBase<MyModel> {
     model.name = "Mr Worldwide";
     return model;
   }
+
+  addExclamation = () => {
+    this.state.name += "!";
+  }
 }
 customElements.define("basic-page", BasicPage);
 `);
 
     return /* html*/`
         <h2>Getting started</h2>
-        <h3>#1: Set up a minimal component with data binding:</h3>
+        <h3>#1: Set up a basic component (basic-page.ts):</h3>
         <pre><code>${code}</code></pre>
 
-        <h3>#2: Include the file in your index.html:</h3>
-        <code>${this.encodeHTMLEntities('<script src="../dist/web/components/basic-page.js" type="module"></script>')}</code>
+        <h3>#2: Transpile TS to JS and include the file in your index.html:</h3>
+        <pre><code>${this.encodeHTMLEntities('<script src="basic-page.js" type="module"></script>')}</code></pre>
 
         <h3>#3: Add the component anywhere in the body of your index.html </h3>
-        <code>${this.encodeHTMLEntities('<basic-page></basic-page>')}</code>
+        <pre><code>${this.encodeHTMLEntities(`<body>
+  <basic-page></basic-page>
+</body>`)}</code></pre>
 
         <h3>Result:</h3>
         <div class="result">
