@@ -3,9 +3,19 @@ import { MovieService } from '../../core/services/movie-service.js';
 import { CssRegistry } from '../../framework/css-registry.js';
 import { FrameworkBase } from '../../framework/framework-base.js';
 import { ServiceLocator } from '../../framework/service-locator.js';
-import { MyModel } from './my-model.js';
+import { SimpleModel } from './simple-model.js';
 
-export class DemosPage extends FrameworkBase<MyModel> {
+class DemosModel {
+  name: string;
+  movies: MovieModel[];
+  selectedMovie: MovieModel;
+  todoText: string;
+  todos: string[];
+  isLoadingMovies: boolean;
+  simpleElements: SimpleModel[];
+}
+
+export class DemosPage extends FrameworkBase<DemosModel> {
 
   movieService: MovieService;
 
@@ -22,7 +32,8 @@ export class DemosPage extends FrameworkBase<MyModel> {
 
   template(): string {
     return /*html*/`
-        <h2>Examples</h2>
+        <h2>Demos</h2>
+
         <h3>#1: Text input</h3>
         <pre><code>${this.encodeHTMLEntities(`/* Template */
 <input type="text" data-bind="event: {input: showInput}, value: name" />
@@ -40,27 +51,55 @@ showInput = async (a: InputEvent) => {
           <p>You entered: <span data-bind="innerHTML: name"></span></p>
         </div>
 
-        <h3>#2: Select control</h3>
+        <h3>#2: Select control with async data loading</h3>
         <pre><code>${this.encodeHTMLEntities(`/* Template */
 <button data-bind="event: { click: loadMovies }">Load movies</button>
-<select data-bind="event: { change: setSelectedMovie }">
-  <option data-bind="value: m.title, innerHTML: m.title, attr: { selected: movieIsSelected }"></option>
-</select>
-<p data-bind="innerHTML: selectedMovie.description"></p>`)}
+<span data-bind="attr: { style: isLoadingMoviesStyle }">Loading movies...</span>
+<div data-bind="attr: { style: movieSelectionStyle }">
+  <p>Select a movie:</p>
+  <select data-bind="foreach: m of movies, event: { change: setSelectedMovie }">
+    <option data-bind="value: m.title, innerHTML: m.title, attr: { selected: movieIsSelected, hidden: movieIsHidden }"></option>
+  </select>
+</div>
+<div data-bind="attr: { style: movieInfoStyle }">
+  <h3>Movie description</h3>
+  <p><i data-bind="innerHTML: selectedMovie?.description"></i></p>
+</div>`)}
 
 /* JS */
-loadData = async () => {
-  const presentation = await this.slideService.getSlides();
-  this.state.slides = presentation.slides;
+loadMovies = async () => {
+  this.state.isLoadingMovies = true;
+  const movies = await this.movieService.getMovies();
+
+  // insert null element that will serve as default
+  this.state.movies = [new MovieModel("-- select --", null), ...movies];
+  this.state.selectedMovie = this.state.movies[0];
+  this.state.isLoadingMovies = false;
 }
 
-setSelectedSlide = (a: Event) => {
-  const slideHeader = (a.target as HTMLSelectElement).value;
-  this.state.selectedSlideText = this.state.slides.filter(s => s.header === slideHeader)[0].body;
+isLoadingMoviesStyle = () => {
+  return this.state.isLoadingMovies ? null : "display: none";
 }
 
-slideIsSelected = (s: SlideModel) => {
-  return s?.body === this.state.selectedSlideText ? "selected" : null;
+setSelectedMovie = (a: Event) => {
+  const title = (a.target as HTMLSelectElement).value;
+  this.state.selectedMovie = this.state.movies.filter(s => s.title === title)[0];
+}
+
+movieIsSelected = (s: MovieModel) => {
+  return s?.title === this.state.selectedMovie?.title ? "selected" : null;
+}
+
+movieIsHidden = (s: MovieModel) => {
+  return s?.description ? null : "hidden";
+}
+
+movieSelectionStyle = () => {
+  return this.state.movies.length ? null : "display: none";
+}
+
+movieInfoStyle = () => {
+  return this.state.selectedMovie?.description ? null : "display: none";
 }
 </code></pre>
 
@@ -126,32 +165,59 @@ detectTodoEnter = async (e: KeyboardEvent) => {
           <ul data-bind="foreach: todo of todos">
             <li>
               <span data-bind="innerHTML: todo"></span>
-              <a href="javascript:void(0);" data-bind="event: { click: removeTodo }">Remove</span>
+              <a href="javascript:void(0);" data-bind="event: { click: removeTodo }">Remove</a>
             </li>
           </ul>
         </div>
-        `;
+        
+        <h3>#4: Pass state to child components</h3>
+
+        <p>Assume we have a component named <code>SimpleElement</code> with this template:</p>
+        <pre><code>${this.encodeHTMLEntities(`<h5>Simple element</h5>
+<p>
+  <span data-bind="innerText: firstname"></span>
+  <span data-bind="innerText: lastname"></span>
+</p>`)}</pre></code>
+
+<p>We can then set the <code>state</code> property of the element to set its state:</p>
+
+        <pre><code>${this.encodeHTMLEntities(`/* Template */
+<div data-bind="foreach: e of simpleElements">
+  <simple-element data-bind="state: e"></simple-element>
+</div>`)}
+
+/* JS */
+this.state.simpleElements = [new SimpleModel("Alex", "Kidd"), new SimpleModel("Sonic", "Hedgehog")];
+}
+</code></pre>
+<h4>Result</h4>
+<div class="result">
+  <div data-bind="foreach: e of simpleElements">
+    <simple-element data-bind="state: e"></simple-element>
+  </div>
+</div>
+
+<h3>Want to try it out yourself?</h3>
+<p>Check out the <a href="/gettingstarted">Getting started</a> page to discover how easy it is to get this running.</p>
+`;
+
+
   }
 
   styles() {
     return /*CSS*/`
     ${CssRegistry.get("common")}
-    .result {
-      padding: 1rem;
-      border-radius: 0.5rem;
-      border: 1px solid var(--light);
-      background-color: #fff;
-    }
     `;
   }
 
   initState() {
-    let model = new MyModel();
+    let model = new DemosModel();
     model.name = "Some text";
     model.movies = [];
     model.selectedMovie = null;
     model.todos = ["Write a framework", "Get famous"];
     model.todoText = "";
+    model.simpleElements = [new SimpleModel("Alex", "Kidd"), new SimpleModel("Sonic", "Hedgehog")];
     return model;
   }
 

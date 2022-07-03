@@ -6,6 +6,8 @@ import { Router } from "./framework/router.js";
 import { GettingStartedPage } from "./web/components/gettingstarted-page.js";
 import { CssRegistry } from "./framework/css-registry.js";
 import { DocumentationPage } from "./web/components/documentation-page.js";
+import { SimpleElement } from "./web/components/simple-element.js";
+import { BasicPage } from "./web/components/basic-page.js";
 
 // register services
 ServiceLocator.register(MovieService.name, () => new MovieService());
@@ -15,6 +17,8 @@ customElements.define("home-page", HomePage);
 customElements.define("demos-page", DemosPage);
 customElements.define("gettingstarted-page", GettingStartedPage);
 customElements.define("documentation-page", DocumentationPage);
+customElements.define("simple-element", SimpleElement);
+customElements.define("basic-page", BasicPage);
 
 // register common styles
 CssRegistry.register("common", /* CSS */
@@ -36,6 +40,12 @@ CssRegistry.register("common", /* CSS */
   }
   a:hover {
     color: var(--accent-alt);
+  }
+  div.result {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--light);
+    background-color: #fff;
   }
 `);
 

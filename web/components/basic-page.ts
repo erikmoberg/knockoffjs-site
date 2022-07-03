@@ -11,7 +11,7 @@ export class BasicPage extends FrameworkBase<MyModel> {
 
   template(): string {
     return `
-        <h2>About</h2>
+        <h2>Hello</h2>
         <p data-bind="innerText: name"></p>
         `;
   }
@@ -19,15 +19,14 @@ export class BasicPage extends FrameworkBase<MyModel> {
   styles() {
     return `
     p {
-      color: red;
+      color: darkgoldenrod;
     }
     `;
   }
 
   initState() {
     let model = new MyModel();
-    model.name = "my name";
+    model.name = "Mr Worldwide";
     return model;
   }
 }
-customElements.define("basic-page", BasicPage);

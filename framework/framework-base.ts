@@ -1,35 +1,36 @@
 import { Router } from "./router.js";
 
 export abstract class FrameworkBase<T extends object> extends HTMLElement {
-    
+
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
 
         const that = this;
         const handler = {
-            set (obj, prop, value) {
-              obj[prop] = value;
-              that.updateBindings(prop);
-              return true;
+            set(obj, prop, value) {
+                obj[prop] = value;
+                that.updateBindings(prop);
+                return true;
             }
-          };
+        };
 
-        this.state = new Proxy<T>(this.initState(), handler);
+        // use state if set by parent component, otherwise initialize
+        this.state = new Proxy<T>(this.state === undefined ? this.initState() : this.state, handler);
     }
 
     state: T;
 
-    abstract initState() : T;
+    abstract initState(): T;
 
-    async connectedCallback() : Promise<void> {
+    async connectedCallback(): Promise<void> {
         this.shadowRoot.innerHTML = `<style>${this.styles()}</style>${this.template()}`;
         this.updateBindings();
     }
 
-    abstract template() : string;
+    abstract template(): string;
 
-    abstract styles() : string;
+    abstract styles(): string;
 
     templateCache = new Map<Node, string>();
 
@@ -42,9 +43,9 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
                 const binding = nodeValue.split(":")[0].trim();
                 const propertyName = nodeValue.substring(binding.length + 1).trim();
                 if (binding === "event") {
-                     this.processObjectBinding(
-                         alias, context, propertyName, 
-                         (eventName, bindingTarget) => {
+                    this.processObjectBinding(
+                        alias, context, propertyName,
+                        (eventName, bindingTarget) => {
                             if (context) {
                                 n.addEventListener(eventName, (ev) => {
                                     bindingTarget(ev, context);
@@ -53,7 +54,7 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
                                 n.addEventListener(eventName, bindingTarget);
                             }
                         });
-                         
+
                 } else if (binding === "foreach") {
                     let template = this.templateCache.get(n);
                     if (!template) {
@@ -73,7 +74,7 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
                 } else {
                     if (binding === "attr") {
                         this.processObjectBinding(
-                            alias, context, propertyName, 
+                            alias, context, propertyName,
                             (elementAttributeName, bindingTarget) => {
                                 const value = bindingTarget instanceof Function ? bindingTarget(context) : bindingTarget;
                                 if (value !== null) {
@@ -86,12 +87,13 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
                         const bindingTarget = this.getBindingTarget(alias, propertyName, context);
                         const value = bindingTarget instanceof Function ? bindingTarget(context) : bindingTarget;
                         n[binding] = value;
+                        let s = "";
                     }
                 }
             }
         }
 
-        if(!node) {
+        if (!node) {
             this.shadowRoot.querySelectorAll("a").forEach(a => {
                 const link = a as HTMLAnchorElement;
                 if (a.href.startsWith("/")) {
@@ -103,13 +105,13 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
     getBindingsFromValue(nodeValue: string) {
         let nodeValueWithObjectsSeparatedBySemicolon = "";
         let inObject = false;
-        for (let i=0;i<nodeValue.length;i++) {
-            if(nodeValue[i] == "{") {
+        for (let i = 0; i < nodeValue.length; i++) {
+            if (nodeValue[i] == "{") {
                 inObject = true;
-            } else if(inObject && nodeValue[i] == ",") {
+            } else if (inObject && nodeValue[i] == ",") {
                 nodeValueWithObjectsSeparatedBySemicolon += ";";
                 continue;
-            } else if(inObject && nodeValue[i] == "}") {
+            } else if (inObject && nodeValue[i] == "}") {
                 inObject = false;
             }
 
@@ -118,10 +120,10 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
         //const nodeValueWithObjectsSeparatedBySemicolon = nodeValue.replace(/({.*?)(,)(.*?})/gi, "$1;$3"); // Replace commas inside objects with semicolons
         return nodeValueWithObjectsSeparatedBySemicolon.split(",").map(s => s.trim());
     }
-    processObjectBinding (
+    processObjectBinding(
         alias: string,
         context: any,
-        propertyName: string, 
+        propertyName: string,
         process: (attributeName: string, bindingTarget: any) => void) {
         const events = propertyName.split(";");
         for (const eventObj of events) {
@@ -129,7 +131,7 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
             const valueName = eventObj.split(":")[1].replace("}", "").trim();
             const bindingTarget = this.getBindingTarget(alias, valueName, context);
             if (bindingTarget !== null) {
-                process(attributeName, bindingTarget);                    
+                process(attributeName, bindingTarget);
             }
         }
     }

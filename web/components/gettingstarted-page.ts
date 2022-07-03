@@ -9,7 +9,7 @@ export class GettingStartedPage extends FrameworkBase<any> {
 
   template(): string {
 
-    const code = this.encodeHTMLEntities(`export class MyModel {
+    const code = this.encodeHTMLEntities(`class MyModel {
   name: string;
 }
 
@@ -20,7 +20,7 @@ export class BasicPage extends FrameworkBase<MyModel> {
 
   template(): string {
     return \`
-        <h2>About</h2>
+        <h2>Hello</h2>
         <p data-bind="innerText: name"></p>
         \`;
   }
@@ -28,14 +28,14 @@ export class BasicPage extends FrameworkBase<MyModel> {
   styles() {
     return \`
     p {
-      color: red;
+      color: darkgoldenrod;
     }
     \`;
   }
 
   initState() {
     let model = new MyModel();
-    model.name = "my name";
+    model.name = "Mr Worldwide";
     return model;
   }
 }
@@ -44,7 +44,7 @@ customElements.define("basic-page", BasicPage);
 
     return /* html*/`
         <h2>Getting started</h2>
-        <h3>#1: Set up a minimal page example with data binding:</h3>
+        <h3>#1: Set up a minimal component with data binding:</h3>
         <pre><code>${code}</code></pre>
 
         <h3>#2: Include the file in your index.html:</h3>
@@ -52,6 +52,11 @@ customElements.define("basic-page", BasicPage);
 
         <h3>#3: Add the component anywhere in the body of your index.html </h3>
         <code>${this.encodeHTMLEntities('<basic-page></basic-page>')}</code>
+
+        <h3>Result:</h3>
+        <div class="result">
+          <basic-page></basic-page>
+        </div>
 
         <p>Done! Feel free to proceed to the <a href="/documentation">Documentation</a> for a more complete explanation.</p>
         `;

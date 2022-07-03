@@ -1,8 +1,13 @@
 import { FrameworkBase } from '../../framework/framework-base.js';
+import { SimpleModel } from './simple-model.js';
 
 export class HomePage extends FrameworkBase<any> {
   constructor() {
     super();
+  }
+
+  loadThings = () => {
+    this.state.simpleElements = [new SimpleModel("firstname1", "lastname1"), new SimpleModel("firstname2", "lastname2")];
   }
 
   template(): string {
@@ -36,6 +41,9 @@ export class HomePage extends FrameworkBase<any> {
           <div><span>⚔ FancyFencing</span></div>
           <div><span>☢ Nukely</span></div>
         </div>
+
+        <h3>Convinced yet?</h3>
+        <p>We thought so! Now continue on to the <a href="/demos">demos</a> to see what KnockoffJS can do.</p>
         `;
   }
 
@@ -84,7 +92,7 @@ export class HomePage extends FrameworkBase<any> {
   }
 
   initState() {
-    return {}
+    return {simpleElements: []}
   }
 
   async afterInit() {
