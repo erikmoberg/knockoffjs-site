@@ -87,16 +87,16 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
                         const bindingTarget = this.getBindingTarget(alias, propertyName, context);
                         const value = bindingTarget instanceof Function ? bindingTarget(context) : bindingTarget;
                         n[binding] = value;
-                        let s = "";
                     }
                 }
             }
         }
 
         if (!node) {
-            this.shadowRoot.querySelectorAll("a").forEach(a => {
+            const allLinks = this.shadowRoot.querySelectorAll("a");
+            allLinks.forEach(a => {
                 const link = a as HTMLAnchorElement;
-                if (a.href.startsWith("/")) {
+                if (a.pathname.startsWith("/")) {
                     link.addEventListener("click", Router.handleLinkClick);
                 }
             });

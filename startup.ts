@@ -34,6 +34,7 @@ CssRegistry.register("common", /* CSS */
     display: block;
     padding: 1rem;
     border-radius: 0.5rem;
+    overflow-x: scroll;
   }
   a, a:visited {
     color: var(--accent);
@@ -44,10 +45,10 @@ CssRegistry.register("common", /* CSS */
   div.result {
     padding: 1rem;
     border-radius: 0.5rem;
-    border: 1px solid var(--light);
+    border: 2px solid var(--light);
     background-color: #fff;
   }
 `);
 
 // init router
-Router.init("home-page");
+Router.init("home-page", window.location.href.includes("localhost") ? "" : "/knockoffjs");

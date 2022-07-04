@@ -1,5 +1,8 @@
 export class Router {
-    static init(defaultComponent: string) {
+    static baseUri: string;
+    static init(defaultComponent: string, baseUri: string) {
+        Router.baseUri = baseUri;
+        
         // set up routing
         document.querySelectorAll("nav a").forEach(a => {
             const link = a as HTMLLinkElement;
@@ -12,9 +15,9 @@ export class Router {
     }
 
     static handleLinkClick = (e) => {
-        const link = e.target as HTMLLinkElement;
+        const link = e.target as HTMLAnchorElement;
         e.preventDefault();
-        history.pushState(null, null, link.href);
+        history.pushState(null, null, Router.baseUri + link.pathname);
         const component = document.createElement(link.href.substring(link.href.lastIndexOf("/") + 1) + "-page");
         document.querySelector("main").innerHTML = "";
         document.querySelector("main").appendChild(component);

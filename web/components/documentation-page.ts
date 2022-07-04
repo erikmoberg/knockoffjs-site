@@ -32,13 +32,30 @@ export class DocumentationPage extends FrameworkBase<any> {
         <p><code>this.state.myArray = [...this.state.myArray, newElement];</code></p>
 
         <h3>Routing</h3>
-        <p>TBD</p>
+        <p>Before doing anything else, set up the router to enable client side routing:</p>
+        <pre><code>Router.init("home-page", "");</code></pre>
+        <p>Any links starting with "/" should redirect to a registered web component. The component name should end with "-page" (for example "demo-page") and the link should point to the part before "-page" - so "/demo" will point to the component "/demo-page".</p>
         <h3>CSS registry</h3>
-        <p>TBD</p>
+        <p>Since styles are isolated between components, they can be shared using the <code>CssRegistry</code>. To add an entry:</p>
+        <pre><code>CssRegistry.register("common",
+  \`code {
+      color: black;
+    }\`);</code></pre>
+        <p>The styles can later be retrieved in a component, typically like so:</p>
+        <pre><code>styles() {
+  return \`
+    \${CssRegistry.get("common")}
+    /* Other styles... */
+    p {
+      color: blue;
+    }\`;
+  }</code></pre>
+
         <h3>Service locator</h3>
-        <p>TBD</p>
-        <h3>Unit tests</h3>
-        <p>TBD</p>
+        <p>To register a service:</p>
+        <pre><code>ServiceLocator.register(MovieService.name, () => new MovieService());</code></pre>
+        <p>To retrieve a service:</p>
+        <pre><code>const movieService = ServiceLocator.resolve<MovieService>(MovieService.name)</code></pre>
         `;
   }
 

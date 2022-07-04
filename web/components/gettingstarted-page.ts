@@ -22,16 +22,14 @@ export class BasicPage extends FrameworkBase<MyModel> {
     return \`
         <h2>Hello</h2>
         <p data-bind="innerText: name"></p>
-        <button data-bind="event: { click: addExclamation }">Click me!</button>
-        \`;
+        <button data-bind="event: { click: addExclamation }">Click me!</button>\`;
   }
 
   styles() {
     return \`
-    p {
-      color: darkgoldenrod;
-    }
-    \`;
+      p {
+        color: darkgoldenrod;
+      }\`;
   }
 
   initState() {

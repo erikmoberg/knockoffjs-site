@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-    <script src="../dist/startup.js" type="module"></script>
-    <link rel="icon" href="../web/images/favicon.svg">
+    <script src="dist/startup.js" type="module"></script>
+    <link rel="icon" href="web/images/favicon.svg">
     <title>KnockoffJS - The world needs another JS framework</title>
     <style>
         :root {
@@ -23,7 +23,7 @@
         }
 
         body {
-            background-color: var(--light);
+            background-color: #fff;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -90,11 +90,13 @@
             border-radius: 100rem;
             outline: 3px solid var(--accent);
             margin: 0 1rem;
+            white-space: nowrap;
+            transition: outline-color 0.2s ease-in-out;
         }
 
         nav a:hover {
             background: -webkit-linear-gradient(-70deg, var(--accent-alt) 0%, var(--accent) 100%);
-            outline: none;
+            outline-color: transparent;
             text-decoration: none;
         }
 
@@ -122,18 +124,26 @@
             color: var(--light);
         }
 
+        footer a, footer a:visited {
+            color: var(--light);
+        }
+
+        @media (max-width: 800px) {
+          nav a {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0.5rem;
+          }
+          nav {
+            display: block;
+          }
+        }
+
         @media (max-width: 600px) {
           header h1 a {
             font-size: 3rem;
           }
           header h2 {
             font-size: 1.5rem;
-          }
-          nav {
-            display: block;
-          }
-          nav a {
-            margin-top: 0.5rem;
           }
         }
     </style>
@@ -156,7 +166,7 @@
     </main>
 
     <footer>
-        <p>© KnockoffJS</p>
+        <p>Fork us on <a href="https://github.com/erikmoberg/knockoffjs">GitHub!</p>
     </footer>
 </body>
 

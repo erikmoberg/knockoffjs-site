@@ -37,7 +37,7 @@ export class DemosPage extends FrameworkBase<DemosModel> {
         <h3>#1: Text input</h3>
         <pre><code>${this.encodeHTMLEntities(`/* Template */
 <input type="text" data-bind="event: {input: showInput}, value: name" />
-<p>You entered: <span data-bind="innerHTML: name"></span></p>`)}
+<p>You entered: <span data-bind="innerText: name"></span></p>`)}
 
 /* JS */
 showInput = async (a: InputEvent) => {
@@ -48,7 +48,7 @@ showInput = async (a: InputEvent) => {
         <h4>Result</h4>
         <div class="result">
           <input type="text" data-bind="event: {input: showInput}, value: name" />
-          <p>You entered: <span data-bind="innerHTML: name"></span></p>
+          <p>You entered: <span data-bind="innerText: name"></span></p>
         </div>
 
         <h3>#2: Select control with async data loading</h3>

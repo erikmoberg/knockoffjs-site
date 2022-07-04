@@ -37,13 +37,13 @@ export class HomePage extends FrameworkBase<any> {
           <div><span>☣ biowastR</span></div>
           <div><span>☠ WebLurker</span></div>
           <div><span>♙ Chessify</span></div>
-          <div><span>❽ 8Ball</span></div>
+          <div><span>❽ 7Ball</span></div>
           <div><span>⚔ FancyFencing</span></div>
           <div><span>☢ Nukely</span></div>
         </div>
 
         <h3>Convinced yet?</h3>
-        <p>We thought so! Now continue on to the <a href="/demos">demos</a> to see what KnockoffJS can do.</p>
+        <p>We thought so! Now continue on to the <a href="/demos">Demos</a> to see what KnockoffJS can do.</p>
         `;
   }
 
@@ -78,9 +78,8 @@ export class HomePage extends FrameworkBase<any> {
     }
     .client-grid div {
       height: 5rem;
-      background-color: var(--dark);
+      background-color: var(--light);
       border-radius: 0.5rem;
-      color: #fff;
       display: flex;
       justify-content: space-around;
       font-size: 2rem;
