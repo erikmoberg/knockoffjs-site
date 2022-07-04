@@ -6,17 +6,28 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
 
-        const that = this;
-        const handler = {
-            set(obj, prop, value) {
-                obj[prop] = value;
-                that.updateBindings(prop);
-                return true;
-            }
-        };
+        const instance = this;
+        let createOnChangeProxy = (target) => {
+            return new Proxy(target, {
+                get(obj, prop) {
+                    const item = obj[prop];
+                    if (item && typeof item === 'object') {
+                        // create new proxy for nested object
+                        return createOnChangeProxy(item);
+                    }
+
+                    return item
+                },
+                set(obj, prop, value) {
+                    obj[prop] = value;
+                    instance.updateBindings(prop as string);
+                    return true;
+                },
+            });
+        }
 
         // use state if set by parent component, otherwise initialize
-        this.state = new Proxy<T>(this.state === undefined ? this.initState() : this.state, handler);
+        this.state = createOnChangeProxy(this.state === undefined ? this.initState() : this.state);
     }
 
     state: T;

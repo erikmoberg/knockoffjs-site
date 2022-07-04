@@ -1,6 +1,6 @@
 import { FrameworkBase } from "../../framework/framework-base.js";
 
-export class MyModel {
+class MyModel {
   name: string;
 }
 
