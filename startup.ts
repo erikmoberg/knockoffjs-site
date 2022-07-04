@@ -1,10 +1,7 @@
 import { HomePage } from "./web/components/home-page.js"
-import { ServiceLocator } from "./framework/service-locator.js"
 import { MovieService } from "./core/services/movie-service.js";
 import { DemosPage } from "./web/components/demos-page.js";
-import { Router } from "./framework/router.js";
 import { GettingStartedPage } from "./web/components/gettingstarted-page.js";
-import { CssRegistry } from "./framework/css-registry.js";
 import { DocumentationPage } from "./web/components/documentation-page.js";
 import { SimpleElement } from "./web/components/demos/simple-element.js";
 import { BasicPage } from "./web/components/basic-page.js";
@@ -12,6 +9,9 @@ import { TextInputDemo } from "./web/components/demos/textinput-demo.js";
 import { SelectDemo } from "./web/components/demos/select-demo.js";
 import { TodoDemo } from "./web/components/demos/todo-demo.js";
 import { ChildComponentDemo } from "./web/components/demos/childcomponent-demo.js";
+import { ServiceLocator } from "./knockoffjs/service-locator.js";
+import { CssRegistry } from "./knockoffjs/css-registry.js";
+import { Router } from "./knockoffjs/router.js";
 
 // register services
 ServiceLocator.register(MovieService.name, () => new MovieService());

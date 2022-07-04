@@ -1,4 +1,4 @@
-import { NullishGuard } from '../framework/nullish-guard.js';
+import { NullishGuard } from '../knockoffjs/nullish-guard.js';
 import { Fixture } from './Fixture.js'
 
 export class NullishGuardHelperTests extends Fixture {

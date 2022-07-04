@@ -1,10 +1,10 @@
-import { FrameworkBase } from "../../framework/framework-base.js";
+import { KnockoffJsBase } from "../../knockoffjs/knockoffjs-base.js";
 
 class MyModel {
   name: string;
 }
 
-export class BasicPage extends FrameworkBase<MyModel> {
+export class BasicPage extends KnockoffJsBase<MyModel> {
   constructor() {
     super({ name: "Mr Worldwide" });
   }

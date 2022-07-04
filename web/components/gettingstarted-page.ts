@@ -1,7 +1,7 @@
-import { CssRegistry } from '../../framework/css-registry.js';
-import { FrameworkBase } from '../../framework/framework-base.js';
+import { CssRegistry } from '../../knockoffjs/css-registry.js';
+import { KnockoffJsBase } from '../../knockoffjs/knockoffjs-base.js';
 
-export class GettingStartedPage extends FrameworkBase<any> {
+export class GettingStartedPage extends KnockoffJsBase<any> {
 
   constructor() {
     super();
@@ -13,7 +13,7 @@ export class GettingStartedPage extends FrameworkBase<any> {
   name: string;
 }
 
-export class BasicPage extends FrameworkBase<MyModel> {
+export class BasicPage extends KnockoffJsBase<MyModel> {
   constructor() {
     super({ name: "Mr Worldwide" });
   }

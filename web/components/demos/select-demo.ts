@@ -1,7 +1,7 @@
 import { MovieModel } from "../../../core/models/movie-model.js";
 import { MovieService } from "../../../core/services/movie-service.js";
-import { FrameworkBase } from "../../../framework/framework-base.js";
-import { ServiceLocator } from "../../../framework/service-locator.js";
+import { KnockoffJsBase } from "../../../knockoffjs/knockoffjs-base.js";
+import { ServiceLocator } from "../../../knockoffjs/service-locator.js";
 
 class SelectDemoModel {
   isLoadingMovies: boolean;
@@ -9,7 +9,7 @@ class SelectDemoModel {
   selectedMovie: MovieModel;
 }
 
-export class SelectDemo extends FrameworkBase<SelectDemoModel> {
+export class SelectDemo extends KnockoffJsBase<SelectDemoModel> {
 
   movieService: MovieService;
   

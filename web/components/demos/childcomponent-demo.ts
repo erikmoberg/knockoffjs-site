@@ -1,11 +1,11 @@
-import { FrameworkBase } from "../../../framework/framework-base.js";
+import { KnockoffJsBase } from "../../../knockoffjs/knockoffjs-base.js";
 import { SimpleModel } from "./simple-model.js";
 
 class ChildComponentDemoModel {
   simpleElements: SimpleModel[];
 }
 
-export class ChildComponentDemo extends FrameworkBase<ChildComponentDemoModel> {
+export class ChildComponentDemo extends KnockoffJsBase<ChildComponentDemoModel> {
 
   constructor() {
     let model = new ChildComponentDemoModel();

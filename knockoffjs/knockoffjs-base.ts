@@ -1,6 +1,6 @@
 import { Router } from "./router.js";
 
-export abstract class FrameworkBase<T extends object> extends HTMLElement {
+export abstract class KnockoffJsBase<T extends object> extends HTMLElement {
     constructor(model: T = null) {
         super();
         this.attachShadow({ mode: 'open' });

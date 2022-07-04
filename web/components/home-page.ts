@@ -1,6 +1,6 @@
-import { FrameworkBase } from '../../framework/framework-base.js';
+import { KnockoffJsBase } from '../../knockoffjs/knockoffjs-base.js';
 
-export class HomePage extends FrameworkBase<any> {
+export class HomePage extends KnockoffJsBase<any> {
   constructor() {
     super();
   }

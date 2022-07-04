@@ -1,11 +1,11 @@
-import { FrameworkBase } from "../../../framework/framework-base.js";
+import { KnockoffJsBase } from "../../../knockoffjs/knockoffjs-base.js";
 
 class TodoDemoModel {
   todoText: string;
   todos: string[];
 }
 
-export class TodoDemo extends FrameworkBase<TodoDemoModel> {
+export class TodoDemo extends KnockoffJsBase<TodoDemoModel> {
 
   constructor() {
     let model = new TodoDemoModel();

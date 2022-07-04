@@ -1,7 +1,7 @@
-import { CssRegistry } from '../../framework/css-registry.js';
-import { FrameworkBase } from '../../framework/framework-base.js';
+import { CssRegistry } from '../../knockoffjs/css-registry.js';
+import { KnockoffJsBase } from '../../knockoffjs/knockoffjs-base.js';
 
-export class DocumentationPage extends FrameworkBase<any> {
+export class DocumentationPage extends KnockoffJsBase<any> {
 
   constructor() {
     super();
@@ -13,7 +13,7 @@ export class DocumentationPage extends FrameworkBase<any> {
         <h2>Documentation</h2>
         
         <h3>Basic concepts</h3>
-        <p>The most vital component is a the framework base class: <code>FrameworkBase</code>. All functionality is implemented as web components that inherit from this class. These methods should be implemented from the abstract base class:</p>
+        <p>The most vital component is a the framework base class: <code>KnockoffJsBase</code>. All functionality is implemented as web components that inherit from this class. These methods should be implemented from the abstract base class:</p>
         <ul>
           <li><code>template</code>: Creates the HTML markup of the component.</li>
           <li><code>styles</code>: Creates the CSS of the component. The CSS will be scoped to the component (thanks to the shadow DOM).</li>

@@ -1,7 +1,7 @@
-import { FrameworkBase } from "../../../framework/framework-base.js";
+import { KnockoffJsBase } from "../../../knockoffjs/knockoffjs-base.js";
 import { SimpleModel } from "./simple-model.js";
 
-export class SimpleElement extends FrameworkBase<SimpleModel> {
+export class SimpleElement extends KnockoffJsBase<SimpleModel> {
   constructor() {
     super(new SimpleModel("", ""));
   }

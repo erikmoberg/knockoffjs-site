@@ -1,10 +1,10 @@
-import { FrameworkBase } from "../../../framework/framework-base.js";
+import { KnockoffJsBase } from "../../../knockoffjs/knockoffjs-base.js";
 
 class TextInputDemoModel {
   name: string;
 }
 
-export class TextInputDemo extends FrameworkBase<TextInputDemoModel> {
+export class TextInputDemo extends KnockoffJsBase<TextInputDemoModel> {
 
   constructor() {
     let model = new TextInputDemoModel();

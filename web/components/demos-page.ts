@@ -1,7 +1,7 @@
-import { CssRegistry } from '../../framework/css-registry.js';
-import { FrameworkBase } from '../../framework/framework-base.js';
+import { CssRegistry } from '../../knockoffjs/css-registry.js';
+import { KnockoffJsBase } from '../../knockoffjs/knockoffjs-base.js';
 
-export class DemosPage extends FrameworkBase<any> {
+export class DemosPage extends KnockoffJsBase<any> {
 
   constructor() {
     super();
