@@ -5,10 +5,10 @@ KnockoffJS is a new type of framework, as it both embraces web standards when it
 KnockoffJS was implemented with three values in mind: Embrace, Extend, and Extinguish.
 
 ## Embrace
-Built completely on web standards, such as web components, to ensure future compatibility.
+Built completely on web standards, such as web components, to ensure future compatibility. Mostly.
 
 ## Extend
-Adds features such reactivity and client-side routing and lets you focus on what matters: Great code.
+Adds features such reactivity and client-side routing and lets you focus on what matters: Messy business code.
 
 ## Extinguish
 Superior to other popular frameworks in any conceivable way; start using it now or be left in the dust.
