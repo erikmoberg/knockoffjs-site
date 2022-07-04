@@ -14,7 +14,12 @@ export class SelectDemo extends FrameworkBase<SelectDemoModel> {
   movieService: MovieService;
   
   constructor() {
-    super();
+    let model = new SelectDemoModel();
+    model.movies = [];
+    model.selectedMovie = null;
+    
+    super(model);
+
     this.movieService = ServiceLocator.resolve<MovieService>(MovieService.name)
   }
 
@@ -38,14 +43,6 @@ export class SelectDemo extends FrameworkBase<SelectDemoModel> {
     return /*CSS*/`
     `;
   }
-
-  initState() {
-    let model = new SelectDemoModel();
-    model.movies = [];
-    model.selectedMovie = null;
-    return model;
-  }
-
   
   loadMovies = async () => {
     this.state.isLoadingMovies = true;

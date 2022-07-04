@@ -1,8 +1,7 @@
 import { Router } from "./router.js";
 
 export abstract class FrameworkBase<T extends object> extends HTMLElement {
-
-    constructor() {
+    constructor(model: T = null) {
         super();
         this.attachShadow({ mode: 'open' });
 
@@ -27,12 +26,13 @@ export abstract class FrameworkBase<T extends object> extends HTMLElement {
         }
 
         // use state if set by parent component, otherwise initialize
-        this.state = createOnChangeProxy(this.state === undefined ? this.initState() : this.state);
+        const stateObject = this.state === undefined ? model : this.state;
+        if (stateObject !== null) {
+            this.state = createOnChangeProxy(stateObject);
+        }
     }
 
     state: T;
-
-    abstract initState(): T;
 
     async connectedCallback(): Promise<void> {
         this.shadowRoot.innerHTML = `<style>${this.styles()}</style>${this.template()}`;

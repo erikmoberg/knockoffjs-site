@@ -1,14 +1,14 @@
-import { FrameworkBase } from "../../framework/framework-base.js";
+import { FrameworkBase } from "../../../framework/framework-base.js";
 import { SimpleModel } from "./simple-model.js";
 
 export class SimpleElement extends FrameworkBase<SimpleModel> {
   constructor() {
-    super();
+    super(new SimpleModel("", ""));
   }
 
   template(): string {
     return `
-        <h5>Simple element</h5>
+        <h4>Simple element</h4>
         <p>
           <span data-bind="innerText: firstname"></span>
           <span data-bind="innerText: lastname"></span>
@@ -18,9 +18,5 @@ export class SimpleElement extends FrameworkBase<SimpleModel> {
 
   styles() {
     return ``;
-  }
-
-  initState() {
-    return new SimpleModel("", "");
   }
 }

@@ -6,7 +6,7 @@ import { Router } from "./framework/router.js";
 import { GettingStartedPage } from "./web/components/gettingstarted-page.js";
 import { CssRegistry } from "./framework/css-registry.js";
 import { DocumentationPage } from "./web/components/documentation-page.js";
-import { SimpleElement } from "./web/components/simple-element.js";
+import { SimpleElement } from "./web/components/demos/simple-element.js";
 import { BasicPage } from "./web/components/basic-page.js";
 import { TextInputDemo } from "./web/components/demos/textinput-demo.js";
 import { SelectDemo } from "./web/components/demos/select-demo.js";

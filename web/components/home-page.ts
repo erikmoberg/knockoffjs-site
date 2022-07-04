@@ -1,13 +1,8 @@
 import { FrameworkBase } from '../../framework/framework-base.js';
-import { SimpleModel } from './simple-model.js';
 
 export class HomePage extends FrameworkBase<any> {
   constructor() {
     super();
-  }
-
-  loadThings = () => {
-    this.state.simpleElements = [new SimpleModel("firstname1", "lastname1"), new SimpleModel("firstname2", "lastname2")];
   }
 
   template(): string {
@@ -88,12 +83,5 @@ export class HomePage extends FrameworkBase<any> {
       display: flex;
       align-items: center;
     }`;
-  }
-
-  initState() {
-    return {simpleElements: []}
-  }
-
-  async afterInit() {
   }
 }

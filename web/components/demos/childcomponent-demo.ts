@@ -1,5 +1,5 @@
 import { FrameworkBase } from "../../../framework/framework-base.js";
-import { SimpleModel } from "../simple-model.js";
+import { SimpleModel } from "./simple-model.js";
 
 class ChildComponentDemoModel {
   simpleElements: SimpleModel[];
@@ -8,7 +8,9 @@ class ChildComponentDemoModel {
 export class ChildComponentDemo extends FrameworkBase<ChildComponentDemoModel> {
 
   constructor() {
-    super();
+    let model = new ChildComponentDemoModel();
+    model.simpleElements = [new SimpleModel("Alex", "Kidd"), new SimpleModel("Sonic", "Hedgehog, the")];
+    super(model);
   }
 
   template(): string {
@@ -21,11 +23,5 @@ export class ChildComponentDemo extends FrameworkBase<ChildComponentDemoModel> {
   styles() {
     return /*CSS*/`
     `;
-  }
-
-  initState() {
-    let model = new ChildComponentDemoModel();
-    model.simpleElements = [new SimpleModel("Alex", "Kidd"), new SimpleModel("Sonic", "Hedgehog")];
-    return model;
   }
 }

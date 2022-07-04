@@ -15,27 +15,20 @@ export class GettingStartedPage extends FrameworkBase<any> {
 
 export class BasicPage extends FrameworkBase<MyModel> {
   constructor() {
-    super();
+    super({ name: "Mr Worldwide" });
   }
 
   template(): string {
     return \`
-        <h2>Hello</h2>
-        <p data-bind="innerText: name"></p>
-        <button data-bind="event: { click: addExclamation }">Click me!</button>\`;
+      <h2>Hello <span data-bind="innerText: name"></span></h2>
+      <button data-bind="event: { click: addExclamation }">Click me!</button>\`;
   }
 
   styles() {
     return \`
-      p {
+      h2 span {
         color: darkgoldenrod;
       }\`;
-  }
-
-  initState() {
-    let model = new MyModel();
-    model.name = "Mr Worldwide";
-    return model;
   }
 
   addExclamation = () => {
@@ -53,7 +46,7 @@ customElements.define("basic-page", BasicPage);
         <h3>#2: Transpile TS to JS and include the file in your index.html:</h3>
         <pre><code>${this.encodeHTMLEntities('<script src="basic-page.js" type="module"></script>')}</code></pre>
 
-        <h3>#3: Add the component anywhere in the body of your index.html </h3>
+        <h3>#3: Add the component anywhere in the body of your index.html:</h3>
         <pre><code>${this.encodeHTMLEntities(`<body>
   <basic-page></basic-page>
 </body>`)}</code></pre>
@@ -75,9 +68,5 @@ customElements.define("basic-page", BasicPage);
 
   styles() {
     return `${CssRegistry.get("common")}`;
-  }
-
-  initState() {
-    return {}
   }
 }

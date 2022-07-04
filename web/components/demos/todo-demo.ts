@@ -8,7 +8,10 @@ class TodoDemoModel {
 export class TodoDemo extends FrameworkBase<TodoDemoModel> {
 
   constructor() {
-    super();
+    let model = new TodoDemoModel();
+    model.todos = ["Write a framework", "Get famous"];
+    model.todoText = "";
+    super(model);
   }
 
   template(): string {
@@ -26,13 +29,6 @@ export class TodoDemo extends FrameworkBase<TodoDemoModel> {
   styles() {
     return /*CSS*/`
     `;
-  }
-
-  initState() {
-    let model = new TodoDemoModel();
-    model.todos = ["Write a framework", "Get famous"];
-    model.todoText = "";
-    return model;
   }
 
   getAddTodoState = () => {

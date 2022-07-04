@@ -137,7 +137,7 @@ detectTodoEnter = async (e: KeyboardEvent) => {
 <h3>#4: Pass state to child components</h3>
 
 <p>Assume we have a component named <code>SimpleElement</code> with this template:</p>
-<pre><code>${this.encodeHTMLEntities(`<h5>Simple element</h5>
+<pre><code>${this.encodeHTMLEntities(`<h4>Simple element</h4>
 <p>
   <span data-bind="innerText: firstname"></span>
   <span data-bind="innerText: lastname"></span>
@@ -150,9 +150,13 @@ detectTodoEnter = async (e: KeyboardEvent) => {
   <simple-element data-bind="state: e"></simple-element>
 </div>`)}
 
-/* JS */
-this.state.simpleElements = [new SimpleModel("Alex", "Kidd"), new SimpleModel("Sonic", "Hedgehog")];
+/* JS: Define the model */
+export class SimpleModel {
+  constructor(public firstname: string, public lastname: string) {}
 }
+
+/* JS: Set the state */
+this.state.simpleElements = [new SimpleModel("Alex", "Kidd"), new SimpleModel("Sonic", "Hedgehog, the")];
 </code></pre>
 <h4>Result</h4>
 <div class="result">
@@ -160,7 +164,7 @@ this.state.simpleElements = [new SimpleModel("Alex", "Kidd"), new SimpleModel("S
 </div>
 
 <h3>Want to try it out yourself?</h3>
-<p>Check out the <a href="/gettingstarted">Getting started</a> page to discover how easy it is to get this running.</p>
+<p>Check out the <a href="/gettingstarted">Getting started</a> page to discover how easy it is to get this running yourself!</p>
 `;
   }
 
@@ -168,9 +172,5 @@ this.state.simpleElements = [new SimpleModel("Alex", "Kidd"), new SimpleModel("S
     return /*CSS*/`
     ${CssRegistry.get("common")}
     `;
-  }
-
-  initState() {
-    return {};
   }
 }

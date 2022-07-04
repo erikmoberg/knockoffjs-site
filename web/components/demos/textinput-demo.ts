@@ -7,7 +7,9 @@ class TextInputDemoModel {
 export class TextInputDemo extends FrameworkBase<TextInputDemoModel> {
 
   constructor() {
-    super();
+    let model = new TextInputDemoModel();
+    model.name = "Some text";
+    super(model);
   }
 
   template(): string {
@@ -20,13 +22,6 @@ export class TextInputDemo extends FrameworkBase<TextInputDemoModel> {
     return /*CSS*/`
     `;
   }
-
-  initState() {
-    let model = new TextInputDemoModel();
-    model.name = "Some text";
-    return model;
-  }
-
   
   showInput = async (a: InputEvent) => {
     this.state.name = (a.target as HTMLInputElement).value;
