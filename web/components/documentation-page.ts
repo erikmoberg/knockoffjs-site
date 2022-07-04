@@ -12,7 +12,7 @@ export class DocumentationPage extends FrameworkBase<any> {
     return /* html*/`
         <h2>Documentation</h2>
         
-        <h3>Basic concept</h3>
+        <h3>Basic concepts</h3>
         <p>The most vital component is a the framework base class. All functionality is implemented as web components that inherit from this class. These methods should be implemented from the abstract base class:</p>
         <ul>
           <li><code>template</code>: Creates the HTML markup of the component.</li>

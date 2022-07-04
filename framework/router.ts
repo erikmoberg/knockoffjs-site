@@ -21,5 +21,6 @@ export class Router {
         const component = document.createElement(link.href.substring(link.href.lastIndexOf("/") + 1) + "-page");
         document.querySelector("main").innerHTML = "";
         document.querySelector("main").appendChild(component);
+        window.scrollTo({ top: 0 });
     }
 }

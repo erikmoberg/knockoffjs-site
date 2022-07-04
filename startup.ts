@@ -8,6 +8,10 @@ import { CssRegistry } from "./framework/css-registry.js";
 import { DocumentationPage } from "./web/components/documentation-page.js";
 import { SimpleElement } from "./web/components/simple-element.js";
 import { BasicPage } from "./web/components/basic-page.js";
+import { TextInputDemo } from "./web/components/demos/textinput-demo.js";
+import { SelectDemo } from "./web/components/demos/select-demo.js";
+import { TodoDemo } from "./web/components/demos/todo-demo.js";
+import { ChildComponentDemo } from "./web/components/demos/childcomponent-demo.js";
 
 // register services
 ServiceLocator.register(MovieService.name, () => new MovieService());
@@ -19,6 +23,10 @@ customElements.define("gettingstarted-page", GettingStartedPage);
 customElements.define("documentation-page", DocumentationPage);
 customElements.define("simple-element", SimpleElement);
 customElements.define("basic-page", BasicPage);
+customElements.define("textinput-demo", TextInputDemo);
+customElements.define("select-demo", SelectDemo);
+customElements.define("todo-demo", TodoDemo);
+customElements.define("childcomponent-demo", ChildComponentDemo);
 
 // register common styles
 CssRegistry.register("common", /* CSS */
@@ -27,14 +35,14 @@ CssRegistry.register("common", /* CSS */
     color: var(--light);
   }
   code {
-    padding: 0.15rem;
+    padding: 0.05rem 0.25rem;
     border-radius: 0.15rem;
   }
   pre code {
     display: block;
     padding: 1rem;
     border-radius: 0.5rem;
-    overflow-x: scroll;
+    overflow-x: auto;
   }
   a, a:visited {
     color: var(--accent);
