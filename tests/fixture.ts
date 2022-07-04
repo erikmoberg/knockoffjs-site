@@ -1,9 +1,10 @@
 export class Fixture {
+    tests: Function[];
     constructor() {
         this.tests = [];
     }
 
-    test(fn) {
+    test(fn: Function) {
         this.tests.push(fn);
     }
 
