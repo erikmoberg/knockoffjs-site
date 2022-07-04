@@ -19,6 +19,12 @@ export class DocumentationPage extends KnockoffJsBase<any> {
           <li><code>styles</code>: Creates the CSS of the component. The CSS will be scoped to the component (thanks to the shadow DOM).</li>
           <li><code>constructor</code>: Pass in an instance of the object that will be used for the state to the base class.</li>
         </ul>
+        <p>Since each component is a web component, any lifecycle methods that web components provide are available. For example, if you need to load data after the component has been created, you can use <code>connectedCallback</code>:</p>
+        <pre><code>async connectedCallback(): Promise<void> {
+  super.connectedCallback();
+  const movies = await this.movieService.getMovies();
+  this.state.name = movies[0].title;
+}</code></pre>
 
         <h3>Bindings</h3>
         <p>For data binding, adding event listeners, etc data-bind is used. Example: <code>&lt;span data-bind="innerText: myText"&gt;&lt;/span&gt;</code> will display a span element and set it's text to the value of <code>myText</code> in the state model. Generally, this can be used to set any property on an HTML element.</p>
