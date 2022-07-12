@@ -50,7 +50,7 @@ customElements.define("basic-page", BasicPage);
         <pre><code>${code}</code></pre>
 
         <h3>#3: Transpile TS to JS and include the file in your index.html:</h3>
-        <pre><code>${this.encodeHTMLEntities('<script src="basic-page.js" type="module"></script>')}</code></pre>
+        <pre><code>${this.encodeHTMLEntities('<script src="dist/basic-page.js" type="module"></script>')}</code></pre>
 
         <h3>#4: Add the component anywhere in the body of your index.html:</h3>
         <pre><code>${this.encodeHTMLEntities(`<body>
