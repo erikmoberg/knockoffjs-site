@@ -1,5 +1,5 @@
-import { CssRegistry } from '../../knockoffjs/css-registry.js';
-import { KnockoffJsBase } from '../../knockoffjs/knockoffjs-base.js';
+import { CssRegistry } from '../../node_modules/knockoffjs/css-registry.js';
+import { KnockoffJsBase } from '../../node_modules/knockoffjs/knockoffjs-base.js';
 
 export class GettingStartedPage extends KnockoffJsBase<any> {
 

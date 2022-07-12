@@ -1,7 +1,7 @@
 import { MovieModel } from "../../../core/models/movie-model.js";
 import { MovieService } from "../../../core/services/movie-service.js";
-import { KnockoffJsBase } from "../../../knockoffjs/knockoffjs-base.js";
-import { ServiceLocator } from "../../../knockoffjs/service-locator.js";
+import { KnockoffJsBase } from "../../../node_modules/knockoffjs/knockoffjs-base.js";
+import { ServiceLocator } from "../../../node_modules/knockoffjs/service-locator.js";
 
 class SelectDemoModel {
   isLoadingMovies: boolean;

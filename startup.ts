@@ -9,9 +9,9 @@ import { TextInputDemo } from "./web/components/demos/textinput-demo.js";
 import { SelectDemo } from "./web/components/demos/select-demo.js";
 import { TodoDemo } from "./web/components/demos/todo-demo.js";
 import { ChildComponentDemo } from "./web/components/demos/childcomponent-demo.js";
-import { ServiceLocator } from "./knockoffjs/service-locator.js";
-import { CssRegistry } from "./knockoffjs/css-registry.js";
-import { Router } from "./knockoffjs/router.js";
+import { ServiceLocator } from "./node_modules/knockoffjs/service-locator.js";
+import { CssRegistry } from "./node_modules/knockoffjs/css-registry.js";
+import { Router } from "./node_modules/knockoffjs/router.js";
 
 // register services
 ServiceLocator.register(MovieService.name, () => new MovieService());

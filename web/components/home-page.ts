@@ -1,4 +1,4 @@
-import { KnockoffJsBase } from '../../knockoffjs/knockoffjs-base.js';
+import { KnockoffJsBase } from '../../node_modules/knockoffjs/knockoffjs-base.js';
 
 export class HomePage extends KnockoffJsBase<any> {
   constructor() {

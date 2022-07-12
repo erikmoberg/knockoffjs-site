@@ -1,5 +1,5 @@
-import { CssRegistry } from '../../knockoffjs/css-registry.js';
-import { KnockoffJsBase } from '../../knockoffjs/knockoffjs-base.js';
+import { CssRegistry } from '../../node_modules/knockoffjs/css-registry.js';
+import { KnockoffJsBase } from '../../node_modules/knockoffjs/knockoffjs-base.js';
 
 export class DocumentationPage extends KnockoffJsBase<any> {
 
@@ -33,9 +33,9 @@ export class DocumentationPage extends KnockoffJsBase<any> {
 
         <h3>Handling state</h3>
         <p>Initially, create and return an instance of the state model in the <code>constructor</code>. The type should correspond to the generic type passed to the base class. When setting the state, we simply access it and set it like so:</p>
-        <p><code>this.state.myProperty = "new value";</code></p>
+        <pre><code>this.state.myProperty = "new value";</code></pre>
         <p>This updates all bindings. Note that arrays need to be replaced instead of mutated for the change to be detected. This will add a new element:</p>
-        <p><code>this.state.myArray = [...this.state.myArray, newElement];</code></p>
+        <pre><code>this.state.myArray = [...this.state.myArray, newElement];</code></pre>
 
         <h3>Routing</h3>
         <p>Before doing anything else, set up the router to enable client side routing:</p>
