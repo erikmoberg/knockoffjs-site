@@ -18,6 +18,9 @@
     "url": "https://github.com/erikmoberg/erikmoberg.github.io/issues"
   },
   "homepage": "https://github.com/erikmoberg/erikmoberg.github.io#readme",
+  "dependencies": {
+    "knockoffjs": "github:erikmoberg/knockoffjs"
+  },
   "devDependencies": {
     "typescript": "^4.7.4"
   }

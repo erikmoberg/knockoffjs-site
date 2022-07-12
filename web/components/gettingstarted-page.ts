@@ -40,13 +40,19 @@ customElements.define("basic-page", BasicPage);
 
     return /* html*/`
         <h2>Getting started</h2>
-        <h3>#1: Set up a basic component (basic-page.ts):</h3>
+
+        <h3>#1: Add KnockoffJS to package.json:</h3>
+        <pre><code>npm install https://github.com/erikmoberg/knockoffjs.git</code></pre>
+        <p>Also add TypeScript support:</p>
+        <pre><code>npm install typescript</code></pre>
+
+        <h3>#2: Set up a basic component (basic-page.ts):</h3>
         <pre><code>${code}</code></pre>
 
-        <h3>#2: Transpile TS to JS and include the file in your index.html:</h3>
+        <h3>#3: Transpile TS to JS and include the file in your index.html:</h3>
         <pre><code>${this.encodeHTMLEntities('<script src="basic-page.js" type="module"></script>')}</code></pre>
 
-        <h3>#3: Add the component anywhere in the body of your index.html:</h3>
+        <h3>#4: Add the component anywhere in the body of your index.html:</h3>
         <pre><code>${this.encodeHTMLEntities(`<body>
   <basic-page></basic-page>
 </body>`)}</code></pre>
