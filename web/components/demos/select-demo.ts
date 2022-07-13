@@ -26,14 +26,14 @@ export class SelectDemo extends KnockoffJsBase<SelectDemoModel> {
   template(): string {
     return /*html*/`
     <button data-bind="event: { click: loadMovies }">Load movies</button>
-    <span data-bind="attr: { style: isLoadingMoviesStyle }">Loading movies...</span>
-    <div data-bind="attr: { style: movieSelectionStyle }">
+    <span data-bind="style.display: isLoadingMoviesStyle">Loading movies...</span>
+    <div data-bind="style.display: movieSelectionStyle">
       <p>Select a movie:</p>
       <select data-bind="foreach: m of movies, event: { change: setSelectedMovie }">
-        <option data-bind="value: m.title, innerText: m.title, attr: { selected: movieIsSelected, hidden: movieIsHidden }"></option>
+        <option data-bind="value: m.title, innerText: m.title, selected: movieIsSelected, hidden: movieIsHidden"></option>
       </select>
     </div>
-    <div data-bind="attr: { style: movieInfoStyle }">
+    <div data-bind="style.display: movieInfoStyle">
       <h3>Movie description</h3>
       <p><i data-bind="innerText: selectedMovie?.description"></i></p>
     </div>`;
@@ -55,7 +55,7 @@ export class SelectDemo extends KnockoffJsBase<SelectDemoModel> {
   }
 
   isLoadingMoviesStyle = () => {
-    return this.state.isLoadingMovies ? null : "display: none";
+    return this.state.isLoadingMovies ? "" : "none";
   }
 
   setSelectedMovie = (a: Event) => {
@@ -64,18 +64,18 @@ export class SelectDemo extends KnockoffJsBase<SelectDemoModel> {
   }
 
   movieIsSelected = (s: MovieModel) => {
-    return s?.title === this.state.selectedMovie?.title ? "selected" : null;
+    return s?.title === this.state.selectedMovie?.title ? true : false;
   }
 
   movieIsHidden = (s: MovieModel) => {
-    return s?.description ? null : "hidden";
+    return s?.description ? false : true;
   }
 
   movieSelectionStyle = () => {
-    return this.state.movies.length ? null : "display: none";
+    return this.state.movies.length ? "" : "none";
   }
 
   movieInfoStyle = () => {
-    return this.state.selectedMovie?.description ? null : "display: none";
+    return this.state.selectedMovie?.description ? "" : "none";
   }
 }

@@ -27,9 +27,9 @@ export class DocumentationPage extends KnockoffJsBase<any> {
 }</code></pre>
 
         <h3>Bindings</h3>
-        <p>For data binding, adding event listeners, etc data-bind is used. Example: <code>&lt;span data-bind="innerText: myText"&gt;&lt;/span&gt;</code> will display a span element and set it's text to the value of <code>myText</code> in the state model. Generally, this can be used to set any property on an HTML element.</p>
-        <p>To add an attribute, use the <code>attr</code> binding: <code>data-bind="attr: { class: getMyClass }"</code>. Note that if the method (<code>getMyClass</code> in this case) returns null, the attribute will be removed.</p> 
-        <p>For events, the <code>event</code> binding is used: <code>data-bind="event: { click: myHandler }"</code></p>
+        <p>For property data binding, adding event listeners, etc <code>data-bind</code> is used. Example: <code>&lt;span data-bind="innerText: myText"&gt;&lt;/span&gt;</code> will display a span element and set its text to the value of <code>myText</code> in the state model. Generally, this can be used to set <i>any property</i> on an HTML element, such as <code>innerText</code> or <code>disabled</code>. Also nested properties can be set, such as <code>styles.display</code>. The target of the binding (in the example above <code>myText</code>), the value can be a property in the <code>state</code> object, or it can be a function that returns a value. Note that when using a function, only the name of the function should be used, without parenthesis. Example: <code>&lt;span data-bind="innerText: getText"&gt;&lt;/span&gt;</code> can be used to run the <code>getText</code> function in the component to get the text.</p>
+        <p>To add an attribute, use the <code>attr</code> binding: <code>data-bind="attr: { class: getMyClass }"</code>. Note that if the method (<code>getMyClass</code> in this case) returns null, the attribute will be removed. (Pro tip: Generally, properties can be used instead of attributes.)</p> 
+        <p>For events, the <code>event</code> binding is used, that should point to a function in the same class: <code>data-bind="event: { click: myHandler }"</code></p>
 
         <h3>Handling state</h3>
         <p>Initially, create and return an instance of the state model in the <code>constructor</code>. The type should correspond to the generic type passed to the base class. When setting the state, we simply access it and set it like so:</p>

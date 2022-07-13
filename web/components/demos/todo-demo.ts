@@ -17,7 +17,7 @@ export class TodoDemo extends KnockoffJsBase<TodoDemoModel> {
   template(): string {
     return /*html*/`
     <input type="text" data-bind="value: todoText, event: { input: setTodoText, keyup: detectTodoEnter }" />
-    <button data-bind="event: { click: addTodo }, attr: { disabled: getAddTodoState }">Add</button>
+    <button data-bind="event: { click: addTodo }, disabled: addTodoStateIsDisabled">Add</button>
     <ul data-bind="foreach: todo of todos">
       <li>
         <span data-bind="innerText: todo"></span>
@@ -31,8 +31,8 @@ export class TodoDemo extends KnockoffJsBase<TodoDemoModel> {
     `;
   }
 
-  getAddTodoState = () => {
-    return this.state.todoText ? null : "disabled";
+  addTodoStateIsDisabled = () => {
+    return this.state.todoText ? false : true;
   }
 
   addTodo = () => {

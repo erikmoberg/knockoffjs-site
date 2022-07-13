@@ -36,14 +36,14 @@ showInput = async (a: InputEvent) => {
 <h3>#2: Select control with async data loading</h3>
 <pre><code>${this.encodeHTMLEntities(`/* Template */
 <button data-bind="event: { click: loadMovies }">Load movies</button>
-<span data-bind="attr: { style: isLoadingMoviesStyle }">Loading movies...</span>
-<div data-bind="attr: { style: movieSelectionStyle }">
+<span data-bind="style.display: isLoadingMoviesStyle">Loading movies...</span>
+<div data-bind="style.display: movieSelectionStyle">
   <p>Select a movie:</p>
   <select data-bind="foreach: m of movies, event: { change: setSelectedMovie }">
-    <option data-bind="value: m.title, innerText: m.title, attr: { selected: movieIsSelected, hidden: movieIsHidden }"></option>
+    <option data-bind="value: m.title, innerText: m.title, selected: movieIsSelected, hidden: movieIsHidden"></option>
   </select>
 </div>
-<div data-bind="attr: { style: movieInfoStyle }">
+<div data-bind="style.display: movieInfoStyle">
   <h3>Movie description</h3>
   <p><i data-bind="innerText: selectedMovie?.description"></i></p>
 </div>`)}
@@ -60,7 +60,7 @@ loadMovies = async () => {
 }
 
 isLoadingMoviesStyle = () => {
-  return this.state.isLoadingMovies ? null : "display: none";
+  return this.state.isLoadingMovies ? "" : "none";
 }
 
 setSelectedMovie = (a: Event) => {
@@ -69,19 +69,19 @@ setSelectedMovie = (a: Event) => {
 }
 
 movieIsSelected = (s: MovieModel) => {
-  return s?.title === this.state.selectedMovie?.title ? "selected" : null;
+  return s?.title === this.state.selectedMovie?.title ? true : false;
 }
 
 movieIsHidden = (s: MovieModel) => {
-  return s?.description ? null : "hidden";
+  return s?.description ? false : true;
 }
 
 movieSelectionStyle = () => {
-  return this.state.movies.length ? null : "display: none";
+  return this.state.movies.length ? "" : "none";
 }
 
 movieInfoStyle = () => {
-  return this.state.selectedMovie?.description ? null : "display: none";
+  return this.state.selectedMovie?.description ? "" : "none";
 }
 </code></pre>
 
@@ -94,17 +94,17 @@ movieInfoStyle = () => {
 
 <pre><code>${this.encodeHTMLEntities(`/* Template */
 <input type="text" data-bind="value: todoText, event: { input: setTodoText, keyup: detectTodoEnter }" />
-<button data-bind="event: { click: addTodo }, attr: { disabled: getAddTodoState }">Add</button>
+<button data-bind="event: { click: addTodo }, disabled: addTodoStateIsDisabled">Add</button>
 <ul data-bind="foreach: todo of todos">
   <li>
     <span data-bind="innerText: todo"></span>
-    <a href="javascript:void(0);" data-bind="event: { click: removeTodo }">Remove</span>
+    <a href="javascript:void(0);" data-bind="event: { click: removeTodo }">Remove</a>
   </li>
 </ul>`)}
 
 /* JS */
-getAddTodoState = () => {
-  return this.state.todoText ? null : "disabled";
+addTodoStateIsDisabled = () => {
+  return this.state.todoText ? false : true;
 }
 
 addTodo = () => {
@@ -156,7 +156,9 @@ export class SimpleModel {
 }
 
 /* JS: Set the state */
-this.state.simpleElements = [new SimpleModel("Alex", "Kidd"), new SimpleModel("Sonic", "Hedgehog, the")];
+this.state.simpleElements = [
+  new SimpleModel("Alex", "Kidd"), 
+  new SimpleModel("Sonic", "Hedgehog, the")];
 </code></pre>
 <h4>Result</h4>
 <div class="result">
