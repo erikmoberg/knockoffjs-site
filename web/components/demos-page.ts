@@ -19,7 +19,7 @@ export class DemosPage extends KnockoffJsBase<any> {
 
 <h3>#1: Text input</h3>
 <pre><code>${this.encodeHTMLEntities(`/* Template */
-<input type="text" data-bind="event: {input: showInput}, value: name" />
+<input type="text" data-bind="event: { input: showInput }, value: name" />
 <p>You entered: <span data-bind="innerText: name"></span></p>`)}
 
 /* JS */
