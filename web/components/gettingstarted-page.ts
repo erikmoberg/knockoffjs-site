@@ -9,7 +9,9 @@ export class GettingStartedPage extends KnockoffJsBase<any> {
 
   template(): string {
 
-    const code = this.encodeHTMLEntities(`class MyModel {
+    const code = this.encodeHTMLEntities(`import { KnockoffJsBase } from "./node_modules/knockoffjs/knockoffjs-base.js";
+
+class MyModel {
   name: string;
 }
 
@@ -24,7 +26,7 @@ export class BasicPage extends KnockoffJsBase<MyModel> {
       <button data-bind="event: { click: addExclamation }">Click me!</button>\`;
   }
 
-  styles() {
+  styles(): string {
     return \`
       h2 span {
         color: darkgoldenrod;

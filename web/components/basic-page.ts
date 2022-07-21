@@ -15,7 +15,7 @@ export class BasicPage extends KnockoffJsBase<MyModel> {
       <button data-bind="event: { click: addExclamation }">Click me!</button>`;
   }
 
-  styles() {
+  styles(): string {
     return `
       h2 span {
         color: darkgoldenrod;
