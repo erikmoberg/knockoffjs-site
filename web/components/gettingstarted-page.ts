@@ -43,6 +43,17 @@ customElements.define("basic-page", BasicPage);
     return /* html*/`
         <h2>Getting started</h2>
 
+        <h3>Option 1: Super quick start (clone and run this site)</h3>
+        
+        <p>Open a terminal and type:</p>
+        <pre><code>git clone https://github.com/erikmoberg/knockoffjs-site.git
+cd knockoffjs-site
+npm install
+npm run-script serve</code></pre>
+        <p>Open a browser, point to <a href="http://localhost:3000">http://localhost:3000</a> and enjoy.</p>
+
+        <h3>Option 2: Also quick start (except slower)</h3>
+
         <h3>#1: Add KnockoffJS to package.json:</h3>
         <pre><code>npm install https://github.com/erikmoberg/knockoffjs.git</code></pre>
         <p>Also add TypeScript support:</p>
