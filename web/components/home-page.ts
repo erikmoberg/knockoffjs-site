@@ -1,3 +1,4 @@
+import { CssRegistry } from '../../node_modules/knockoffjs/css-registry.js';
 import { KnockoffJsBase } from '../../node_modules/knockoffjs/knockoffjs-base.js';
 
 export class HomePage extends KnockoffJsBase<any> {
@@ -44,6 +45,7 @@ export class HomePage extends KnockoffJsBase<any> {
 
   styles() {
     return /* CSS */`
+    ${CssRegistry.get("common")}
     section {
       display: flex;
       justify-content: space-between;
